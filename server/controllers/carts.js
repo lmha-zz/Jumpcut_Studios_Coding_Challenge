@@ -1,5 +1,9 @@
 var paypal = require('paypal-rest-sdk');
-require('../../config/paypal.js');
+paypal.configure({
+	'mode': 'sandbox', //sandbox or live
+	'client_id': 'ATQ8-BAdw0KfAldGUKdGwx6oTZV3IFPNawQ8rm_MqEmILbHoIOqpdTHubwWW',
+	'client_secret': 'EKGZvxA8chevcnGsifLbpu8PSMAks_nDXxmUqXXKe1kFkezEjqCl_qf4Fap3'
+});
 
 module.exports = {
 	index: function(req, res) {
