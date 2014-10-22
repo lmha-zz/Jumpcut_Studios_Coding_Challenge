@@ -1,0 +1,28 @@
+<div ng-controller="invoices">
+	<h1 ng-bind="content_title"></h1>
+	<p>This get request takes ~6 seconds (be patient please)</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Type</th>
+				<th>State</th>
+				<th>Amount</th>
+				<th>Funding Source</th>
+				<th>Payment Resource</th>
+				<th>Transaction ID</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invoice in invoices">
+				<td ng-bind="invoice.create_time | date:'medium'"></td>
+				<td ng-bind="invoice.intent"></td>
+				<td ng-bind="invoice.state"></td>
+				<td>{{invoice.transactions[0].amount.total}} {{invoice.transactions[0].amount.currency}}</td>
+				<td ng-bind="invoice.payer.payment_method"></td>
+				<td ng-bind="invoice.id"></td>
+				<td ng-bind="invoice.transactions[0].related_resources[0].sale.id"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

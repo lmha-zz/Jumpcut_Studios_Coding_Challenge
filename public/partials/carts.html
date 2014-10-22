@@ -1,0 +1,33 @@
+<div ng-controller="carts">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 ng-bind="content_title"></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<table>
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Quanitity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="product in products">
+						<td ng-bind="product.name"></td>
+						<td>${{product.price}}</td>
+						<td ng-bind="product.quantity"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<button ng-click="placeOrder()">Confirm Order</button>
+			<p ng-bind="orderPlaced"></p>
+		</div>
+	</div>
+</div>
