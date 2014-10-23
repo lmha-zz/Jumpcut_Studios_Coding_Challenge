@@ -11,8 +11,7 @@ angular.module('shoppingApp').controller('carts', ['$scope', '$http', 'CartFacto
 				console.log('stuff breaking! :(');
 			})
 	}
-	
-	ProductFactory.getProducts(function(products) {
+	CartFactory.getCart(function(products) {
 		$scope.products = products;
 	})
 }])
@@ -26,7 +25,11 @@ angular.module('shoppingApp').controller('invoices', ['$scope', '$http', 'Invoic
 	})
 }])
 
-angular.module('shoppingApp').controller('payments', ['$scope','$http', 'PaymentFactory', function($scope, $http, PaymentFactory) {
+angular.module('shoppingApp').controller('payments', ['$scope','$http', 'PaymentFactory', 'CartFactory', function($scope, $http, PaymentFactory, CartFactory) {
+
+	$scope.printer = function() {
+		console.log($scope.payer);
+	}
 	$scope.content_title = "Choose Payment Option:";
 	$scope.expDateYYRange = expYYRange();
 	function expYYRange() {
@@ -37,8 +40,8 @@ angular.module('shoppingApp').controller('payments', ['$scope','$http', 'Payment
 		};
 		return years;
 	}
-	$scope.billing_address = {};
-	$scope.states = [
+	$scope.payer = {};
+	$scope.countries = [
 		{code:"US", name:"United States"},
 		{code:"CA", name:"Canada"},
 		{code:"AF", name:"Afghanistan"},
@@ -280,5 +283,65 @@ angular.module('shoppingApp').controller('payments', ['$scope','$http', 'Payment
 		{code:"ZM", name:"Zambia"},
 		{code:"ZW", name:"Zimbabwe"}
 	];
-	$scope.billing_address.state_province = $scope.states[0];
+	$scope.states = [
+		{code:'AK',name:"Alaska"}, 
+		{code:'AL',name:"Alabama"}, 
+		{code:'AR',name:"Arkansas"}, 
+		{code:'AS',name:"American Samoa"}, 
+		{code:'AZ',name:"Arizona"}, 
+		{code:'CA',name:"California"}, 
+		{code:'CO',name:"Colorado"}, 
+		{code:'CT',name:"Connecticut"}, 
+		{code:'DC',name:"District of Columbia"}, 
+		{code:'DE',name:"Delaware"}, 
+		{code:'FL',name:"Florida"}, 
+		{code:'GA',name:"Georgia"}, 
+		{code:'GU',name:"Guam"}, 
+		{code:'HI',name:"Hawaii"}, 
+		{code:'IA',name:"Iowa"}, 
+		{code:'ID',name:"Idaho"}, 
+		{code:'IL',name:"Illinois"}, 
+		{code:'IN',name:"Indiana"}, 
+		{code:'KS',name:"Kansas"}, 
+		{code:'KY',name:"Kentucky"}, 
+		{code:'LA',name:"Louisiana"}, 
+		{code:'MA',name:"Massachusetts"}, 
+		{code:'MD',name:"Maryland"}, 
+		{code:'ME',name:"Maine"}, 
+		{code:'MI',name:"Michigan"}, 
+		{code:'MN',name:"Minnesota"}, 
+		{code:'MO',name:"Missouri"}, 
+		{code:'MS',name:"Mississippi"}, 
+		{code:'MT',name:"Montana"}, 
+		{code:'NC',name:"North Carolina"}, 
+		{code:'ND',name:"North Dakota"}, 
+		{code:'NE',name:"Nebraska"}, 
+		{code:'NH',name:"New Hampshire"}, 
+		{code:'NJ',name:"New Jersey"}, 
+		{code:'NM',name:"New Mexico"}, 
+		{code:'NV',name:"Nevada"}, 
+		{code:'NY',name:"New York"}, 
+		{code:'OH',name:"Ohio"}, 
+		{code:'OK',name:"Oklahoma"}, 
+		{code:'OR',name:"Oregon"}, 
+		{code:'PA',name:"Pennsylvania"}, 
+		{code:'PR',name:"Puerto Rico"}, 
+		{code:'RI',name:"Rhode Island"}, 
+		{code:'SC',name:"South Carolina"}, 
+		{code:'SD',name:"South Dakota"}, 
+		{code:'TN',name:"Tennessee"}, 
+		{code:'TX',name:"Texas"}, 
+		{code:'UT',name:"Utah"}, 
+		{code:'VA',name:"Virginia"}, 
+		{code:'VI',name:"Virgin Islands"}, 
+		{code:'VT',name:"Vermont"}, 
+		{code:'WA',name:"Washington"}, 
+		{code:'WI',name:"Wisconsin"}, 
+		{code:'WV',name:"West Virginia"}, 
+		{code:'WY',name:"Wyoming"} 
+    ];
+
+    CartFactory.getCart(function(products) {
+		$scope.products = products;
+	})
 }])

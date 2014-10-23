@@ -12,10 +12,16 @@ angular.module('shoppingApp').config(function($routeProvider) {
 			templateUrl: '/partials/invoices.html',
 			controller: 'invoices'
 		})
-		.when('/payments',
+		.when('/credit_card',
 		{
-			title: "Payment Options",
-			templateUrl: '/partials/payments.html',
+			title: "Pay with Credit Card",
+			templateUrl: '/partials/credit_card.html',
+			controller: 'payments'
+		})
+		.when('/paypal',
+		{
+			title: "Pay with Paypal",
+			templateUrl: '/partials/paypal.html',
 			controller: 'payments'
 		})
 })

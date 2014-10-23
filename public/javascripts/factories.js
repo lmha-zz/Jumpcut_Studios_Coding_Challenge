@@ -1,5 +1,24 @@
 angular.module('shoppingApp').factory('CartFactory', function($http) {
 	var factory = {};
+	var cartProducts = [
+		{
+			name: "Bike",
+			sku: "extracurricular",
+			price: "300",
+			currency: "USD",
+			quantity: "1"
+		},
+		{
+			name: "Computer Chair",
+			sku: "furniture",
+			price: "300",
+			currency: "USD",
+			quantity: "3"
+		}
+	]
+	factory.getCart = function(callback) {
+		callback(cartProducts);
+	}
 	factory.createOrder = function(product, succsCallback, errCallback) {
 		$http.post('/carts/createOrder', { product: product })
 			.success(function(data) {
@@ -30,20 +49,20 @@ angular.module('shoppingApp').factory('ProductFactory', function($http) {
 			currency: "USD",
 			quantity: "3"
 		},
-		// {
-		// 	name: "Coat Rack",
-		// 	sku: "furniture",
-		// 	price: "40",
-		// 	currency: "USD",
-		// 	quantity: "3"
-		// },
-		// {
-		// 	name: "Ikea Table",
-		// 	sku: "furniture",
-		// 	price: "200",
-		// 	currency: "USD",
-		// 	quantity: "7"
-		// }
+		{
+			name: "Coat Rack",
+			sku: "furniture",
+			price: "40",
+			currency: "USD",
+			quantity: "3"
+		},
+		{
+			name: "Ikea Table",
+			sku: "furniture",
+			price: "200",
+			currency: "USD",
+			quantity: "7"
+		}
 	]
 	factory.getProducts = function(callback) {
 		callback(products);

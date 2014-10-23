@@ -1,6 +1,16 @@
 <div ng-controller="carts">
 	<div class="row">
 		<div class="small-12 columns">
+			<ul class="breadcrumbs">
+				<li class="current"><a href="#/">Cart</a></li>
+				<li class="unavailable">Payment Options</li>
+				<li class="unavailable">Review Order</li>
+				<li class="unavailable">Order Confirmation</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
 			<h2 ng-bind="content_title"></h2>
 		</div>
 	</div>
@@ -26,7 +36,8 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			<a href="#/payments"><button>Confirm Order</button></a>
+			<a href="#/credit_card"><button>Pay with Credit Card</button></a>
+			<a href="#/paypal"><button>Pay with Paypal</button></a>
 			<p ng-bind="orderPlaced"></p>
 		</div>
 	</div>
