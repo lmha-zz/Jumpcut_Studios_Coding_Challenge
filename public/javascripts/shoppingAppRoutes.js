@@ -8,8 +8,14 @@ angular.module('shoppingApp').config(function($routeProvider) {
 		})
 		.when('/invoices',
 		{
-			title: "Payments received from merchant",
+			title: "Payments Received From Merchant",
 			templateUrl: '/partials/invoices.html',
 			controller: 'invoices'
+		})
+		.when('/payments',
+		{
+			title: "Payment Options",
+			templateUrl: '/partials/payments.html',
+			controller: 'payments'
 		})
 })

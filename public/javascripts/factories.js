@@ -67,3 +67,17 @@ angular.module('shoppingApp').factory('InvoiceFactory', function($http) {
 	}
 	return factory;
 })
+
+angular.module('shoppingApp').factory('PaymentFactory', function($http){
+	var factory = {};
+	var payments = [];
+	
+	factory.useCC = function(callback) {
+		
+	}
+	factory.usePayPal = function(callback) {
+		
+	}
+
+	return factory;
+})
