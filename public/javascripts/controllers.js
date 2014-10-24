@@ -27,8 +27,16 @@ angular.module('shoppingApp').controller('invoices', ['$scope', '$http', 'Invoic
 
 angular.module('shoppingApp').controller('payments', ['$scope','$http', 'PaymentFactory', 'CartFactory', function($scope, $http, PaymentFactory, CartFactory) {
 
-	$scope.printer = function() {
-		console.log($scope.payer);
+	$scope.printer = function(data) {
+		console.log(data.$valid, 'printer is printing!', data)
+
+		if(data.$valid) {
+			console.log($scope.payer);
+		}
+	}
+	$scope.errors = function(data) {
+		console.log(data.$error)
+		$scope.errors = data.$error;
 	}
 	$scope.content_title = "Choose Payment Option:";
 	$scope.expDateYYRange = expYYRange();

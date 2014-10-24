@@ -21,7 +21,7 @@ angular.module('shoppingApp').config(function($routeProvider) {
 		.when('/paypal',
 		{
 			title: "Pay with Paypal",
-			templateUrl: '/partials/paypal.html',
+			templateUrl: '/partials/paypal.ejs.html',
 			controller: 'payments'
 		})
 })

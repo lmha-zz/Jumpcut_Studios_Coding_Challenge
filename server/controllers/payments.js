@@ -7,9 +7,57 @@ paypal.configure({
 
 module.exports = {
 	creditCard = function(req, res) {
-		
+		// var payment_details = {
+		// 	"intent": "sale",
+		// 	"payer": {
+		// 		"payment_method": "credit_card",
+		// 		"payer_info": {
+		// 			"email": "lisamha89@gmail.com"
+		// 		},
+		// 		"funding_instruments": [{
+		// 			"credit_card": {
+		// 				"type": "visa",
+		// 				"number": "4032035945181774",
+		// 				"expire_month": "10",
+		// 				"expire_year": "2019",
+		// 				"cvv2": "874",
+		// 				"first_name": "Lisa",
+		// 				"last_name": "Ha",
+		// 				"billing_address": {
+		// 					"line1": "465 Shoreline Dr",
+		// 					"city": "San Jose",
+		// 					"country_code": "US",
+		// 					"postal_code": "95116",
+		// 					"state": "CA",
+		// 					"phone": "123-123-1234"
+		// 				}
+		// 			}
+		// 		}]
+		// 	},
+		// 	"transactions": [{
+		// 		"amount": {
+		// 			"total": sum,
+		// 			"currency": "USD",
+		// 			"details": {
+		// 				"subtotal": subtotal,
+		// 				"tax": tax,
+		// 				"shipping": "30"
+		// 			}
+		// 		},
+		// 		"description": "Buying stuff!." 
+		// 	}]
+		// };
 	}
 	payPalLogin = function(req, res) {
-
+		paypal.use( ["login"], function(login) {
+			login.render ({
+				"appid": "ATQ8-BAdw0KfAldGUKdGwx6oTZV3IFPNawQ8rm_MqEmILbHoIOqpdTHubwWW",
+				"authend": "sandbox",
+				"scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+				"containerid": "paypalLoginButton",
+				"locale": "en-us",
+				"returnurl": "http://jumpcut-studios-task.herokuapp.com/#/"
+			});
+		});
 	}
 }
