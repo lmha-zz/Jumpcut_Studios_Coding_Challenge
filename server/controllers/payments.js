@@ -1,3 +1,5 @@
+var mongoose = require('mongoose'),
+	Token = mongoose.model('Token');
 var paypal = require('paypal-rest-sdk');
 paypal.configure({
 	'mode': 'sandbox', //sandbox or live
@@ -6,7 +8,7 @@ paypal.configure({
 });
 
 module.exports = {
-	creditCard = function(req, res) {
+	creditCard: function(req, res) {
 		// var payment_details = {
 		// 	"intent": "sale",
 		// 	"payer": {
@@ -47,17 +49,8 @@ module.exports = {
 		// 		"description": "Buying stuff!." 
 		// 	}]
 		// };
-	}
-	payPalLogin = function(req, res) {
-		paypal.use( ["login"], function(login) {
-			login.render ({
-				"appid": "ATQ8-BAdw0KfAldGUKdGwx6oTZV3IFPNawQ8rm_MqEmILbHoIOqpdTHubwWW",
-				"authend": "sandbox",
-				"scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
-				"containerid": "paypalLoginButton",
-				"locale": "en-us",
-				"returnurl": "http://jumpcut-studios-task.herokuapp.com/#/"
-			});
-		});
+	},
+	payPal: function(req, res) {
+		
 	}
 }
