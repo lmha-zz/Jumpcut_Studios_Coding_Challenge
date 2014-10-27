@@ -37,44 +37,6 @@ angular.module('shoppingApp').factory('CartFactory', function($http) {
 	return factory;
 })
 
-angular.module('shoppingApp').factory('ProductFactory', function($http) {
-	var factory = {};
-	var products = [
-		{
-			name: "Bike",
-			sku: "extracurricular",
-			price: "300",
-			currency: "USD",
-			quantity: "1"
-		},
-		{
-			name: "Computer Chair",
-			sku: "furniture",
-			price: "300",
-			currency: "USD",
-			quantity: "3"
-		},
-		{
-			name: "Coat Rack",
-			sku: "furniture",
-			price: "40",
-			currency: "USD",
-			quantity: "3"
-		},
-		{
-			name: "Ikea Table",
-			sku: "furniture",
-			price: "200",
-			currency: "USD",
-			quantity: "7"
-		}
-	]
-	factory.getProducts = function(callback) {
-		callback(products);
-	}
-	return factory;
-})
-
 angular.module('shoppingApp').factory('InvoiceFactory', function($http) {
 	var factory = {};
 	var invoices = [];
@@ -97,8 +59,8 @@ angular.module('shoppingApp').factory('PaypalFactory', function($http){
 	var payer = [];
 	var accessToken;
 	
-	factory.order = function(products, payer, accessToken, succsCallback, errCallback) {
-		$http.post('/payments/paypal', { products: products, payer: payer, accessToken: accessToken })
+	factory.order = function(products, succsCallback, errCallback) {
+		$http.post('/payments/paypal', { products: products })
 			.success(function(data) {
 				if(data.httpStatusCode == 201) {
 					succsCallback(data);
@@ -108,42 +70,13 @@ angular.module('shoppingApp').factory('PaypalFactory', function($http){
 			})
 	}
 
-	factory.getAccessToken = function(callback) {
-		$http.get('/tokens').success(function(tokenData) {
-			accessToken = tokenData.authCode;
-			callback(tokenData.authCode);
-		})
-	}
-
-	factory.getPayer = function(token, callback) {
-		$http.get('/payments', { params: { accessToken: token } }).success(function(payerInfo) {
-			payer = payerInfo;
-			callback(payerInfo);
-		})
-	}
-
 	factory.executeApprovedPayment = function(payer_id, callback) {
 		$http.post('/payments/executePayment', { payer_id: payer_id })
 			.success(function(data) {
 				if(data.httpStatusCode == 200) {
 					callback(data);
-					console.log(data)
 				}
 			})
-	}
-
-	return factory;
-})
-
-angular.module('shoppingApp').factory('PaymentFactory', function($http){
-	var factory = {};
-	var payments = [];
-	
-	factory.useCC = function(callback) {
-		
-	}
-	factory.usePayPal = function(callback) {
-		
 	}
 
 	return factory;

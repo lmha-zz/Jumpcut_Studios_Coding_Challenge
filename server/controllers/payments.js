@@ -9,12 +9,6 @@ paypal.configure({
 });
 
 module.exports = {
-	index: function(req, res) {
-		res.render('review_order');
-	},
-	approval: function(req, res) {
-		res.rener('paypal_approval');
-	},
 	paypal: function(req, res) {
 		var paymentInfo;
 		var items = [];
@@ -59,13 +53,11 @@ module.exports = {
 			}
 		}
 
-
 		paypal.payment.create(payment_details, function(error, payment){
 			if(error){
 				console.log(error)
 				res.send(error)
 			} else {
-				console.log(payment)
 				Transaction.update({ _id: "544de22f5d72522c7292b71e" }, { id: payment.id }, function(err, data) {} )
 				res.send(payment);
 			}

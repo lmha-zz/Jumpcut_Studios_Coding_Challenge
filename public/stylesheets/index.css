@@ -1,36 +1,6 @@
 * {
 	font-family: arial;
 }
-label {
-	display: initial;
-}
-span {
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-}
-label {
-	font-weight: bold;
-}
-input {
-	border-top-right-radius: 3px !important;
-	border-bottom-right-radius: 3px !important;
-}
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-select {
-	border-radius: 3px;
-}
-.current {
-	font-weight: bold;
-}
 .chargeSummaryLabel {
 	font-weight: bold;
-}
-#state, #country {
-	border-radius: 0;
-	border-top-right-radius: 3px !important;
-	border-bottom-right-radius: 3px !important;
 }
