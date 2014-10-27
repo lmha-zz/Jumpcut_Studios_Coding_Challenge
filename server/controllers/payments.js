@@ -48,8 +48,8 @@ module.exports = {
 				"description": "This is the payment transaction description."
 			}],
 			"redirect_urls": {
-				"return_url": "http://localhost:3000/#/paypal_order_confirmation",
-				"cancel_url": "http://localhost:3000/#/"
+				"return_url": "https://jumpcut-studios-task.herokuapp.com/#/paypal_order_confirmation",
+				"cancel_url": "https://jumpcut-studios-task.herokuapp.com/#/"
 			}
 		}
 
