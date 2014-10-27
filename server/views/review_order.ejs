@@ -11,7 +11,8 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 
-		var code = window.location.href;
+		var href = window.location.href;
+		var code = href.substr((href.indexOf('&code=')+6), href.length);
 		$('#code').val(code);
 
 	    var scope = angular.element($("#code")).scope();
@@ -19,15 +20,14 @@
 	        scope.code = code;
 	    });
 
-		top.window.opener.location ='http://localhost:3000/#/review_order';
-		$('#authCode').trigger('click');
+		$('#getAccessCode').trigger('click');
+		top.window.opener.location ='http://localhost:3000/#/paypal_review_order';
 	})
 	</script>
 </head>
 <body ng-controller="tokens">
 	<p ng-bind="hello"></p>
 	<input id="code" type="hidden" name="code" ng-model="code">
-	<button ng-click="test()">Click me</button>
-	<button id="authCode" ng-click='saveToken()'></button>
+	<button id="getAccessCode" ng-click='getAccessToken()'>Get Acess Code</button>
 </body>
 </html>

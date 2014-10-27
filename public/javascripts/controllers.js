@@ -1,5 +1,6 @@
 angular.module('shoppingApp').controller('carts', ['$scope', '$http', 'CartFactory', 'ProductFactory', function($scope, $http, CartFactory, ProductFactory) {
 	$scope.content_title = "Products in your cart:";
+	$scope.chargeSummary = {};
 
 	$scope.placeOrder = function() {
 		CartFactory.createOrder($scope.products,
@@ -14,6 +15,9 @@ angular.module('shoppingApp').controller('carts', ['$scope', '$http', 'CartFacto
 	CartFactory.getCart(function(products) {
 		$scope.products = products;
 	})
+	CartFactory.getChargeSummary(function(chargeSummary) {
+		$scope.chargeSummary = chargeSummary;
+	})
 }])
 
 angular.module('shoppingApp').controller('invoices', ['$scope', '$http', 'InvoiceFactory', function($scope, $http, InvoiceFactory) {
@@ -22,6 +26,52 @@ angular.module('shoppingApp').controller('invoices', ['$scope', '$http', 'Invoic
 
 	InvoiceFactory.getInvoices(function(invoices) {
 		$scope.invoices = invoices;
+	})
+}])
+
+angular.module('shoppingApp').controller('paypal', ['$scope','$http', 'PaypalFactory', 'CartFactory', function($scope, $http, PaypalFactory, CartFactory) {
+
+	$scope.accessToken;
+	$scope.products;
+	$scope.payer;
+	$scope.approvalURL;
+
+	$scope.order = function() {
+		console.log('products ',$scope.products)
+		console.log('payer ',$scope.payer)
+		console.log('acces token: ',$scope.accessToken)
+		PaypalFactory.order($scope.products, $scope.payer, $scope.accessToken,
+			function(confirmationInfo){
+				console.log(confirmationInfo);
+				window.location = confirmationInfo.links[1].href;
+			},
+			function(err){
+				console.log('unsuccessful transaction');
+				console.log('errs ', err)
+			})
+	}
+
+    CartFactory.getCart(function(products) {
+    	$scope.products = products;
+	})
+	CartFactory.getChargeSummary(function(chargeSummary) {
+		$scope.chargeSummary = chargeSummary;
+	})
+
+	PaypalFactory.getAccessToken(function(accsToken) {
+		$scope.accessToken = accsToken;
+		PaypalFactory.getPayer($scope.accessToken, function(payerInfo) {
+			$scope.payer = payerInfo;
+		})
+	})
+
+}])
+
+angular.module('shoppingApp').controller('authorize', ['$scope','$http', '$routeParams', 'PaypalFactory', function($scope, $http, $routeParams, PaypalFactory){
+	$scope.parseInt = parseInt;
+	$scope.payment;
+	PaypalFactory.executeApprovedPayment($routeParams.PayerID, function(data) {
+		$scope.payment = data;
 	})
 }])
 

@@ -3,17 +3,18 @@
 		<div class="small-12 columns">
 			<ul class="breadcrumbs">
 				<li><a href="#/">Cart</a></li>
-				<li class="current"><a href="#/paypal">Payment Options</a></li>
-				<li class="unavailable">Review Order</li>
+				<li><a href="#/paypal">Payment Options</a></li>
+				<li class="current">Review Order</li>
 				<li class="unavailable">Order Confirmation</li>
 			</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 medium-6 columns">
-			<span id="paypalContainer"><a href="https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize?client_id=ATQ8-BAdw0KfAldGUKdGwx6oTZV3IFPNawQ8rm_MqEmILbHoIOqpdTHubwWW&response_type=code&scope=openid%20profile%20email%20address%20https://uri.paypal.com/services/paypalattributes&redirect_uri=http://localhost:3000/review_order"><img src="https://www.paypalobjects.com/webstatic/en_US/developer/docs/lipp/loginwithpaypalbutton.png" alt="paypalLogin"></a></span>
-			<span id="myContainer"></span>
-			<script src="https://www.paypalobjects.com/js/external/api.js"></script>
+			<h3>Shipping Address:</h3>
+			<p><span ng-bind="payer.given_name"></span> <span ng-bind="payer.family_name"></span></p>
+			<p><span ng-bind="payer.address.street_address"></span></p>
+			<p><span ng-bind="payer.address.locality"></span>, <span ng-bind="payer.address.regrion"></span> <span ng-bind="payer.address.postal_code"></span></p>
 		</div>
 		<div class="small-12 medium-6 columns">
 			<h3>Your cart:</h3>
@@ -74,11 +75,13 @@
 					<p>$<span ng-bind="chargeSummary.sum"></span></p>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 columns text-right">
 			<a href="#/">Cancel</a>
+			<button ng-click="order()">Place Order</button>
 		</div>
 	</div>
 </div>

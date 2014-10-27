@@ -11,24 +11,29 @@ angular.module('shoppingApp').factory('CartFactory', function($http) {
 		{
 			name: "Computer Chair",
 			sku: "furniture",
-			price: "300",
+			price: "175",
 			currency: "USD",
 			quantity: "3"
 		}
 	]
+	var chargeSummary = {};
+
 	factory.getCart = function(callback) {
 		callback(cartProducts);
 	}
-	factory.createOrder = function(product, succsCallback, errCallback) {
-		$http.post('/carts/createOrder', { product: product })
-			.success(function(data) {
-				if(data.httpStatusCode == 201) {
-					succsCallback(data);
-				} else {
-					errCallback(data);
-				}
-			})
+	factory.getChargeSummary = function(callback) {
+		chargeSummary.sum = 0;
+		chargeSummary.subtotal = 0;
+		chargeSummary.tax = 0;
+		chargeSummary.shipping = 30;
+		for (var i = 0; i < cartProducts.length; i++) {
+			chargeSummary.subtotal += parseInt(cartProducts[i].price)*parseInt(cartProducts[i].quantity);
+		};
+		chargeSummary.tax = (chargeSummary.subtotal * 0.0875).toFixed(2);
+		chargeSummary.sum = (chargeSummary.subtotal + parseFloat(chargeSummary.tax) + 30).toFixed(2); // 30 is set shipping price
+		callback(chargeSummary);
 	}
+
 	return factory;
 })
 
@@ -84,6 +89,49 @@ angular.module('shoppingApp').factory('InvoiceFactory', function($http) {
 				}
 			})
 	}
+	return factory;
+})
+
+angular.module('shoppingApp').factory('PaypalFactory', function($http){
+	var factory = {};
+	var payer = [];
+	var accessToken;
+	
+	factory.order = function(products, payer, accessToken, succsCallback, errCallback) {
+		$http.post('/payments/paypal', { products: products, payer: payer, accessToken: accessToken })
+			.success(function(data) {
+				if(data.httpStatusCode == 201) {
+					succsCallback(data);
+				} else {
+					errCallback(data);
+				}
+			})
+	}
+
+	factory.getAccessToken = function(callback) {
+		$http.get('/tokens').success(function(tokenData) {
+			accessToken = tokenData.authCode;
+			callback(tokenData.authCode);
+		})
+	}
+
+	factory.getPayer = function(token, callback) {
+		$http.get('/payments', { params: { accessToken: token } }).success(function(payerInfo) {
+			payer = payerInfo;
+			callback(payerInfo);
+		})
+	}
+
+	factory.executeApprovedPayment = function(payer_id, callback) {
+		$http.post('/payments/executePayment', { payer_id: payer_id })
+			.success(function(data) {
+				if(data.httpStatusCode == 200) {
+					callback(data);
+					console.log(data)
+				}
+			})
+	}
+
 	return factory;
 })
 

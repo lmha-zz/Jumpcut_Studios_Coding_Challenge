@@ -1,3 +1,3 @@
 (function(){
-	var shoppingApp = angular.module('shoppingApp', ['ngRoute']);
+	var shoppingApp = angular.module('shoppingApp', ['ngRoute'])
 }())

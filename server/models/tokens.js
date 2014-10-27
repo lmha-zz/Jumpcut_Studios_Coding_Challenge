@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var TokenSchema = new mongoose.Schema ({
-	token: {type: String}
-})
+	authCode: {type: String},
+	hidden: Boolean,
+});
 
 mongoose.model('Token', TokenSchema);

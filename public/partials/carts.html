@@ -36,6 +36,43 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
+			<p class="chargeSummaryLabel">Charge Summary</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<p class="chargeSummaryLabel">Item Subtotal</p>
+		</div>
+		<div class="small-9 columns">
+			<p>$<span ng-bind="chargeSummary.subtotal"></span></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<p class="chargeSummaryLabel">Tax</p>
+		</div>
+		<div class="small-9 columns">
+			<p>$<span ng-bind="chargeSummary.tax"></span></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<p class="chargeSummaryLabel">Shipping</p>
+		</div>
+		<div class="small-9 columns">
+			<p>$<span ng-bind="chargeSummary.shipping"></span></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<p class="chargeSummaryLabel">Item Total</p>
+		</div>
+		<div class="small-9 columns">
+			<p>$<span ng-bind="chargeSummary.sum"></span></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
 			<a href="#/credit_card"><button>Pay with Credit Card</button></a>
 			<a href="#/paypal"><button>Pay with Paypal</button></a>
 			<p ng-bind="orderPlaced"></p>

@@ -26,6 +26,9 @@ select {
 .current {
 	font-weight: bold;
 }
+.chargeSummaryLabel {
+	font-weight: bold;
+}
 #state, #country {
 	border-radius: 0;
 	border-top-right-radius: 3px !important;

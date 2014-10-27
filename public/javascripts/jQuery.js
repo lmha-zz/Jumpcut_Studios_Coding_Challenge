@@ -16,7 +16,7 @@ $(document).ready(function(){
 		return false;
 	})
 	$(window).on('hashchange', function(){
-		if(window.location.hash === "#/review_order") {
+		if(window.location.hash.indexOf("#/paypal_review_order") != -1) {
 			paypalMini.close();
 		}
 	})

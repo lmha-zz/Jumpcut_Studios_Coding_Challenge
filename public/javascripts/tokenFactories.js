@@ -1,19 +1,28 @@
 angular.module('tokenApp').factory('TokenFactory', function($http){
 	var factory = {};
-	var token;
+	var authCode;
+	var accessToken;
 	
-	factory.getToken = function() {
-		return token;
+	factory.createCode = function(code, errCallback, succCallback) {
+		$http.post('/tokens', { code: code })
+			.success(function(code) {
+				authCode = code;
+				succCallback(authCode);
+			})
+			.error(function(err){
+				errCallback(err);
+			})
 	}
 
-	factory.setToken = function(code) {
-		token = code;
-	}
-
-	factory.grantTokenFromAuthCode = function(code, callback) {
-		$http.post('https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice', { grant_type: 'authorization_code', code: code, redirect_uri: 'http://localhost:3000/review_order' }).success(function(data){
-			console.log('factory token data: ',data);
-		})
+	factory.getAccessTokenFromAuthCode = function(code, errCallback, succCallback) {
+		$http.post('/tokens/accessToken', {code: code})
+			.success(function(accsToken) {
+				accessToken = accsToken;
+				succCallback(accessToken);
+			})
+			.error(function(err){
+				errCallback(err);
+			})
 	}
 
 	return factory;
