@@ -1,5 +1,4 @@
 var mongoose = require('mongoose'),
-	Token = mongoose.model('Token'),
 	Transaction = mongoose.model('Transaction');
 
 var paypal = require('paypal-rest-sdk');
@@ -15,48 +14,6 @@ module.exports = {
 	},
 	approval: function(req, res) {
 		res.rener('paypal_approval');
-	},
-	creditCard: function(req, res) {
-		// var payment_details = {
-		// 	"intent": "sale",
-		// 	"payer": {
-		// 		"payment_method": "credit_card",
-		// 		"payer_info": {
-		// 			"email": "lisamha89@gmail.com"
-		// 		},
-		// 		"funding_instruments": [{
-		// 			"credit_card": {
-		// 				"type": "visa",
-		// 				"number": "4032035945181774",
-		// 				"expire_month": "10",
-		// 				"expire_year": "2019",
-		// 				"cvv2": "874",
-		// 				"first_name": "Lisa",
-		// 				"last_name": "Ha",
-		// 				"billing_address": {
-		// 					"line1": "465 Shoreline Dr",
-		// 					"city": "San Jose",
-		// 					"country_code": "US",
-		// 					"postal_code": "95116",
-		// 					"state": "CA",
-		// 					"phone": "123-123-1234"
-		// 				}
-		// 			}
-		// 		}]
-		// 	},
-		// 	"transactions": [{
-		// 		"amount": {
-		// 			"total": sum,
-		// 			"currency": "USD",
-		// 			"details": {
-		// 				"subtotal": subtotal,
-		// 				"tax": tax,
-		// 				"shipping": "30"
-		// 			}
-		// 		},
-		// 		"description": "Buying stuff!." 
-		// 	}]
-		// };
 	},
 	paypal: function(req, res) {
 		var paymentInfo;
@@ -127,15 +84,6 @@ module.exports = {
 					res.send(invoice);
 				}
 			});
-		});
-	},
-	getPayer: function(req, res) {
-		paypal.openid_connect.userinfo.get(req.query.accessToken, function(error, userinfo){
-			if(error){
-				console.log('errors '+error);
-			} else {
-				res.send(userinfo);
-			}
 		});
 	}
 }

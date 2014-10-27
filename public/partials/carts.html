@@ -1,9 +1,8 @@
-<div ng-controller="carts">
+<div ng-controller="paypal">
 	<div class="row">
 		<div class="small-12 columns">
 			<ul class="breadcrumbs">
 				<li class="current"><a href="#/">Cart</a></li>
-				<li class="unavailable">Payment Options</li>
 				<li class="unavailable">Review Order</li>
 				<li class="unavailable">Order Confirmation</li>
 			</ul>
@@ -73,8 +72,8 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			<a href="#/credit_card"><button>Pay with Credit Card</button></a>
-			<a href="#/paypal"><button>Pay with Paypal</button></a>
+			<!-- <a href="#/credit_card"><button disabled>Pay with Credit Card</button></a> -->
+			<button ng-click="order()">Pay with Paypal</button>
 			<p ng-bind="orderPlaced"></p>
 		</div>
 	</div>

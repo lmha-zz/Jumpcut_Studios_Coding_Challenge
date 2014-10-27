@@ -3,7 +3,6 @@
 		<div class="small-12 columns">
 			<ul class="breadcrumbs">
 				<li><a href="#/">Cart</a></li>
-				<li><a href="#/paypal">Payment Options</a></li>
 				<li>Review Order</li>
 				<li class="current">Order Confirmation</li>
 			</ul>
@@ -13,7 +12,7 @@
 		<div class="small-12 medium-6 columns">
 			<h3>Thank you for your order!</h3>
 			<h4>Your OrderID is: <span ng-bind="payment.id"></span></h4>
-			<p>View your Order via Paypal by clicking <a ng-href="payment.links[0].href">HERE</a></p>
+			<p>View your Order via Paypal by clicking <a ng-href="{{payment.links[0].href}}">HERE</a></p>
 			<p>Your order was placed: <span ng-bind="payment.create_time | date: 'medium'"></span></p>
 		</div>
 	</div>
@@ -54,10 +53,10 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns text-right">
-			<p>Subtotal: <span ng-bind="payment.transactions[0].amount.details.subtotal"></span></p>
-			<p>Shipping: <span ng-bind="payment.transactions[0].amount.details.shipping"></span></p>
-			<p>Tax: <span ng-bind="payment.transactions[0].amount.details.tax"></span></p>
-			<p class="chargeSummaryLabel">Total: <span ng-bind="payment.transactions[0].amount.total"></span></p>
+			<p>Subtotal: $ <span ng-bind="payment.transactions[0].amount.details.subtotal"></span></p>
+			<p>Shipping: $ <span ng-bind="payment.transactions[0].amount.details.shipping"></span></p>
+			<p>Tax: $ <span ng-bind="payment.transactions[0].amount.details.tax"></span></p>
+			<p class="chargeSummaryLabel">Total: $ <span ng-bind="payment.transactions[0].amount.total"></span></p>
 		</div>
 	</div>
 </div>

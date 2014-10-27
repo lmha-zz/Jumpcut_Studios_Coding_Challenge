@@ -58,12 +58,12 @@ angular.module('shoppingApp').controller('paypal', ['$scope','$http', 'PaypalFac
 		$scope.chargeSummary = chargeSummary;
 	})
 
-	PaypalFactory.getAccessToken(function(accsToken) {
-		$scope.accessToken = accsToken;
-		PaypalFactory.getPayer($scope.accessToken, function(payerInfo) {
-			$scope.payer = payerInfo;
-		})
-	})
+	// PaypalFactory.getAccessToken(function(accsToken) {
+	// 	$scope.accessToken = accsToken;
+	// 	PaypalFactory.getPayer($scope.accessToken, function(payerInfo) {
+	// 		$scope.payer = payerInfo;
+	// 	})
+	// })
 
 }])
 
