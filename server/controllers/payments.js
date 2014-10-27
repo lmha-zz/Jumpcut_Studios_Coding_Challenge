@@ -58,7 +58,7 @@ module.exports = {
 				console.log(error)
 				res.send(error)
 			} else {
-				Transaction.update({ _id: "544de22f5d72522c7292b71e" }, { id: payment.id }, function(err, data) {} )
+				Transaction.update({ _id: "544e0405e4b0c8cf740a597a" }, { id: payment.id }, function(err, data) {} )
 				res.send(payment);
 			}
 		});
@@ -68,7 +68,7 @@ module.exports = {
 		var execute_payment_details = { "payer_id": req.body.payer_id };
 		var paymentID;
 
-		Transaction.findOne({ _id: "544de22f5d72522c7292b71e" }).exec(function(err, payment) {
+		Transaction.findOne({ _id: "544e0405e4b0c8cf740a597a" }).exec(function(err, payment) {
 			paypal.payment.execute(payment.id, execute_payment_details, function(err, invoice){
 				if(err){
 					res.send(err)
