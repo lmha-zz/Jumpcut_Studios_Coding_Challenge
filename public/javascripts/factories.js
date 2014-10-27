@@ -56,8 +56,6 @@ angular.module('shoppingApp').factory('InvoiceFactory', function($http) {
 
 angular.module('shoppingApp').factory('PaypalFactory', function($http){
 	var factory = {};
-	var payer = [];
-	var accessToken;
 	
 	factory.order = function(products, succsCallback, errCallback) {
 		$http.post('/payments/paypal', { products: products })
